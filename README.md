@@ -7,6 +7,19 @@
 
 ZTM Special Ops is a graphical RandomX/XMRig CPU benchmarking and personal-mining application. A deliberately authorized **24-hour qualified online benchmark** measures a computer's performance, preserves locally recorded telemetry and results, and qualifies that same worker for personal mining only when its report and eligibility checks pass. The **Mining** tab stays locked until qualification; benchmark payouts use the fixed I2PS development receiving address, aside from XMRig's separately administered upstream donation.
 
+## Linux offline bootstrap — distribution candidate (November 1, 2026)
+
+**The previous APT-dependent Linux installer is superseded.** The current prepared archive contains the complete Debian application and a bundled Python 3.13/Tk GUI runtime. Installation and first GUI launch do **not** require a working APT repository or DNS. Dependencies and mining-system preparation are handled as separately authorized steps *after the GUI opens*.
+
+- **Prepared archive:** `ZTM_Special_Ops_3_1_Stable_LINUX_OFFLINE_INSTALL.zip`
+- **ZIP SHA-256:** `e139f58c12b2ceb41055ecb81f4154c7c283476b3da3a9f3b5e6806f93a0160b`
+- **Debian package build:** `3.1.0+native3offline1` (GUI branding: **3.1 Stable**).
+- **Installation command (after download/extraction):** `bash install.sh` as a regular Ubuntu desktop user.
+- **Protection:** 29 compiled proprietary Cython modules are byte-identical to the prior 3.1 release candidate; no original private ZTM Python source is shipped. The readable bundled Python standard library is third-party runtime code under its own licenses.
+- **Verification:** ZIP integrity, package manifest, offline-runtime/Tk imports, and a local Debian installation plus graphical smoke test passed. **Ubuntu-specific first-launch and 24-hour field qualification are still pending.**
+
+The Linux release ZIP has **not yet been attached to GitHub Releases**. Check the [official Releases page](https://github.com/I2PS-Engineering/ZTM_SpecialOps/releases) once publication occurs. Never use the superseded APT-dependent ZIP. A SHA-256 alone is not proof of publisher identity.
+
 ## Current 3.1 platform scope
 
 | Platform | 3.1 engineering behavior | Release state |
