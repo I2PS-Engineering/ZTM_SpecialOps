@@ -1,3 +1,57 @@
+# ZTM Special Ops — 3.1 Stable
+
+**Built by I2PS Engineering.**
+
+> **CURRENT 3.1 RELEASE STATUS — LINUX FIRST (November 1, 2026)**  
+> The Linux 3.1 candidate is entering a controlled 24-hour real-machine validation before public release acceptance. Automated and simulated tests are not a substitute for that field test. The Intel macOS and Mac Apple Silicon application release is planned separately; no signed, notarized Mac application is claimed as distributed by this Linux-first stage.
+
+**Different machines. Different capabilities. Same destination.**
+
+ZTM Special Ops is a graphical RandomX/XMRig CPU benchmarking and personal-mining application. A deliberately authorized **24-hour qualified online benchmark** measures a computer's performance, preserves locally recorded telemetry and results, and qualifies that same worker for personal mining only when its report and eligibility checks pass. The **Mining** tab stays locked until qualification; benchmark payouts use the fixed I2PS development receiving address, aside from XMRig's separately administered upstream donation.
+
+## Current 3.1 platform scope
+
+| Platform | 3.1 engineering behavior | Release state |
+|---|---|---|
+| Ubuntu Linux x86-64 | Hardware-aware candidate search, XMRig automatic-reference comparison, qualified measurements, CPU affinity screening, statistical selection with A-B-B-A retesting, 24-hour benchmark and Mining tab | Linux release candidate; physical 24-hour qualification pending |
+| Intel macOS | Candidate search without Linux-specific CPU pinning, live telemetry and 24-hour benchmark | Native distribution, signing and notarization still pending |
+| Mac Apple Silicon | Graphical, beginner-accessible one-click mining workflow with live telemetry; standard XMRig automatic CPU configuration rather than Intel/Linux engine-selection search | Mac app distribution pending; future inclusion in ZTM Vanguard is planned, not implemented |
+
+The eventual macOS application is intended to be signed using the project's Apple Developer ID and notarized by Apple. These are release requirements, **not claims of completed signing/notarization**. No Vanguard telemetry upload or device-integration pipeline is part of this release.
+
+## Mining tab and official wallet link
+
+There is **one unified Mining tab**, not a separate Wallet tab. After same-machine qualification, it provides the public Monero receiving-address field, validation, an [official Monero wallet website](https://www.getmonero.org/) link for users who need to create their own wallet, personal-mining terms, and **START MINING / STOP MINING**. The application does **not** create wallets, manage encrypted wallet files, request private keys, or collect recovery phrases.
+
+## Exactly how the 1% I2PS contribution is scheduled
+
+The 3.1 personal-mining implementation uses **one supervised XMRig process**, with scheduled payout-address reconfiguration, rather than a second hidden miner:
+
+```python
+cycle_seconds = 6000         # 100 minutes
+i2ps_slot_seconds = 60       # 1 minute
+elapsed = monotonic_now - personal_mining_session_start
+cycle_position = elapsed % cycle_seconds
+use_i2ps_address = cycle_position >= (cycle_seconds - i2ps_slot_seconds)
+```
+
+- **From 0 to 5,940 seconds of each complete cycle (99 minutes):** XMRig is configured for the user's public Monero receiving address.
+- **From 5,940 to 6,000 seconds (the final minute):** XMRig is configured for the fixed I2PS development receiving address.
+- **Every subsequent 6,000-second cycle repeats this pattern**, provided personal mining continues. The I2PS scheduled fraction is **60 / 6,000 = 1% of elapsed personal-mining session time**.
+- **Separately:** XMRig's own built-in `donate-level: 1` retains its **independent upstream 1% developer contribution**. It is not the same as the I2PS payout-address interval.
+
+On Linux, a wallet-address change is applied through a validated privileged-session reconfiguration request. If the mandatory contribution switch is rejected, ZTM stops personal mining rather than silently continuing without it. A short session, start/stop timing, connection interruptions, XMRig's independent donation schedule, pool share difficulty and share luck can all affect realized results. **Scheduled time percentages are not guaranteed percentages of accepted shares, rewards, or earnings.** The scheduler uses monotonic elapsed time; this is not a promise of exactly 60 seconds of pool-confirmed work per cycle.
+
+**The benchmark has a different payout rule:** its user-authorized 24-hour measurements direct ordinary pool rewards to the fixed I2PS development address, with XMRig's own upstream donation remaining separate. The personal receiving address is used only in the unlocked Mining workflow.
+
+## Documentation provenance
+
+The material below is the **preserved 3.0 Stable technical reference**, maintained to avoid silently discarding historical mathematical explanations, figures, operating details or prior documentation. It is **not** a statement that 3.0 trial selection, all 3.0 interface text or the 3.0 test counts define the 3.1 candidate. In any conflict, the 3.1 source and the current 3.1 sections above govern the described behavior. Hardware-dependent release acceptance is still pending.
+
+---
+
+## Archived engineering reference — 3.0 Stable (historical)
+
 # ZTM Special Ops — 3.0 Stable
 
 **Built by I2PS Engineering.**
