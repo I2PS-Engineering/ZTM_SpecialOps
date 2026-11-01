@@ -1,7 +1,5 @@
 # ZTM Special Ops — 3.1 Stable
 
-**Built by I2PS Engineering.**
-
 > **CURRENT 3.1 RELEASE STATUS — LINUX FIRST (November 1, 2026)**  
 > The Linux 3.1 candidate is entering a controlled 24-hour real-machine validation before public release acceptance. Automated and simulated tests are not a substitute for that field test. The Intel macOS and Mac Apple Silicon application release is planned separately; no signed, notarized Mac application is claimed as distributed by this Linux-first stage.
 
