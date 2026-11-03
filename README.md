@@ -123,9 +123,44 @@ The older approved *hardware-prior* equations are preserved in §12 as mathemati
 
 ## 7. GUI, measurements and 15-minute charts
 
-The desktop GUI has **ONGOING**, **PROFILE RESULTS**, **FINAL RESULTS**, and **MINING**. There is **no separate wallet-creation or wallet-management tab**. Mining remains locked until a qualified same-host report validates, and it is unavailable during an active benchmark.
+ZTM Special Ops 3.1.2 uses a desktop GUI on **both Ubuntu Linux and macOS**, with the same four main work areas. No terminal commands are required to operate the normal benchmark controls after platform-specific installation and preparation. The exact layout and available controls depend on the platform, display size, hardware capabilities and benchmark state.
 
-**Six synchronized live charts** share a rolling **15-minute** clock:
+| GUI area | What it shows |
+|---|---|
+| **ONGOING** | Preparation, explicit CPU-work authorization, benchmark Start/Stop controls, progress, real runtime events and hardware/worker status |
+| **PROFILE RESULTS** | Profile and trial evidence, six synchronized rolling 15-minute charts, annotated transitions and the event inspector |
+| **FINAL RESULTS** | Local qualification outcome, report evidence, result review and available report-folder controls |
+| **MINING (LOCKED / UNLOCKED)** | Qualification-gated personal CPU mining, public Monero receiving address, terms acceptance, Start/Stop Mining and the official wallet-resource link |
+
+There is **one Mining tab**. There is no separate Wallet tab or local wallet creator. A qualified same-machine 24-hour report is required before personal mining is available, and the benchmark and personal-mining workloads never run concurrently.
+
+### Linux GUI — Ubuntu Desktop x86-64
+
+The Linux window identifies the machine and worker, provides display scaling controls and groups the benchmark workflow in **ONGOING**:
+
+1. **PREPARE LINUX + INSTALL XMRIG** performs the separately authorized system preparation and verified XMRig setup. The preparation terminal and status checks remain visible in the GUI.
+2. Select **I authorize the 24-hour benchmark.** Read the disclosed payout, electricity and dedicated-computer requirements before starting.
+3. **START BENCHMARK** begins the supervised RandomX run; **STOP** ends an active workload. The ongoing view exposes measured hashrate, profile information, accepted shares and available CPU/RAM/thermal evidence.
+4. **PROFILE RESULTS** provides the six live charts, measured configurations, affinity-screening evidence and **OPEN EVENT INSPECTOR** for annotated events. On compact displays, the navigation may shorten **PROFILE RESULTS** to **PROFILES**.
+5. **FINAL RESULTS** provides **VIEW TELEMETRY GRAPHS**, **REFRESH REPORT** and **OPEN RESULTS FOLDER**. On compact displays its tab may be labelled **RESULTS**.
+
+The Linux engine can evaluate **worker counts and supported CPU-affinity placements**. Unavailable temperature or system metrics are marked unavailable rather than filled with invented values. The Mining tab stays locked until valid same-machine qualification has been recorded.
+
+### macOS GUI — Intel Mac and Mac Apple Silicon
+
+The macOS window identifies the worker and native CPU architecture, then exposes a platform-specific preparation flow in **ONGOING**:
+
+1. **RUN NATIVE PREFLIGHT** checks native macOS readiness and supported requirements.
+2. **PREPARE macOS + INSTALL XMRIG** prepares the architecture-appropriate, verified XMRig runtime with user authorization.
+3. Select the explicit continuous-CPU-work authorization checkbox, then use **START 24H BENCHMARK**. **STOP** remains the controlled stop action; live runtime messages, progress and available sensor measurements are shown in the window.
+4. **PROFILE RESULTS** shows the measured 15-minute charts and event inspector. **FINAL RESULTS** displays local report information and **SHOW REPORTS FOLDER PATH**.
+5. **MINING (LOCKED / UNLOCKED)** uses the same public-address and consent model; eligibility is established by a validated 24-hour same-machine benchmark.
+
+**Intel macOS** uses supported thread-count optimization under native macOS scheduling; it does **not** use Linux-style CPU-affinity placement. **Mac Apple Silicon** runs its native XMRig automatic CPU configuration for the benchmark: advanced CPU optimization and an **Optimized Performance** personal-mining profile are not offered on Apple Silicon. Hardware/sensor availability may differ from Intel macOS.
+
+### Shared GUI charts and event annotations
+
+The **six synchronized live charts** share a rolling **15-minute** clock in the Profile Results view:
 
 | Chart | Display / data policy |
 |---|---|
@@ -136,9 +171,9 @@ The desktop GUI has **ONGOING**, **PROFILE RESULTS**, **FINAL RESULTS**, and **M
 | Pool VarDiff | Violet; normal pool difficulty, with XMRig donation intervals clearly marked |
 | Share activity | Accepted shares green, rejected shares red; cumulative curves continue through intervals with no new share rather than breaking |
 
-The charts place actual profile starts on all six timelines, with metric-color indicators. Affinity screening, relevant transition intervals, donation intervals and available event explanations are represented separately. Missing telemetry remains **unavailable**, never silently interpolated into a measured value. The winning-profile trophy/validation indicator is an event cue, not an independent claim of benchmark success.
+Charts include actual profile-change markers and available event explanations; relevant affinity screening, transitions and donation intervals are distinguished. Missing telemetry remains **unavailable**, never silently interpolated into a measured value. The winning-profile trophy/validation indicator is an event cue, **not** independent proof of benchmark qualification.
 
-**PROFILE RESULTS** presents measured profiles and interactive evidence. **FINAL RESULTS** exposes the local qualification report and available evidence. Visual controls and availability vary by OS and hardware; screenshots should not be presented as measured scientific data.
+**GUI screenshots:** This section describes the verified 3.1.2 shipped interfaces. No 3.0-era screenshot or simulated application image is presented as a 3.1.2 capture. Real screenshots can be added separately without modifying the application packages.
 
 ## 8. Qualified time, reports and Mining unlock
 
